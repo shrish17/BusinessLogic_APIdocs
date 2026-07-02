@@ -1,0 +1,129 @@
+/* Dark theme for the page background */
+body {
+    background-color: #0B0B1E !important;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+.app-container {
+    background-color: #0B0B1E;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header bar container */
+.custom-header {
+    background-color: #15152E;
+    padding: 12px 24px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Header text */
+.header-title {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Pill badge styling */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: rgba(236, 28, 141, 0.1);
+    border: 1px solid rgba(236, 28, 141, 0.3);
+    font-size: 13px;
+    font-weight: 500;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+/* Small dot indicator */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #EC1C8D;
+    margin-right: 8px;
+    display: inline-block;
+    box-shadow: 0 0 8px #EC1C8D;
+    transition: all 0.3s ease;
+}
+
+/* Pulse animation for active status */
+@keyframes status-pulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(236, 28, 141, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 6px rgba(236, 28, 141, 0);
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(236, 28, 141, 0);
+    }
+}
+
+.status-dot-active {
+    animation: status-pulse 2s infinite;
+}
+
+/* Divider line styling */
+.header-divider {
+    border: none;
+    border-top: 1px solid #15152E;
+    margin: 12px 0;
+}
+
+/* Loading text styling */
+.loading-text {
+    color: #9A9AB8;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Outer Wrapper override for Swagger UI */
+.swagger-wrapper {
+    margin-top: 0;
+}
+
+/* Ensure the Swagger root container itself has no extra spacing */
+.swagger-ui {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Hide Swagger's default info block and information container entirely */
+.swagger-ui .info,
+.swagger-ui .information-container {
+    display: none !important;
+}
+
+/* Hide Swagger's Servers/Base URL selector container entirely */
+.swagger-ui .scheme-container {
+    display: none !important;
+}
+
+/* Keep the actual Swagger operation panels on white/light background */
+.swagger-ui .wrapper {
+    background-color: #FFFFFF !important;
+    border-radius: 8px !important;
+    padding: 24px !important;
+    box-sizing: border-box !important;
+    margin-top: 0 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}

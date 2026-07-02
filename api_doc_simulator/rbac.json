@@ -1,0 +1,63 @@
+{
+  "_id": {
+    "$oid": "6a33c9cf7162f3c39b41c2fe"
+  },
+  "roles": {
+    "Admin": {
+      "users": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "products": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "orders": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "roles": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "Manager": {
+      "users": [
+        "read"
+      ],
+      "products": [
+        "create",
+        "read",
+        "update"
+      ],
+      "orders": [
+        "read",
+        "update"
+      ],
+      "roles": [
+        "read"
+      ]
+    },
+    "Customer": {
+      "users": [
+        "read"
+      ],
+      "products": [
+        "read"
+      ],
+      "orders": [
+        "create",
+        "read"
+      ],
+      "roles": []
+    }
+  }
+}

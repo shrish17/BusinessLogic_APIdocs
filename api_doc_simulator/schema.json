@@ -1,0 +1,147 @@
+{
+  "_id": {
+    "$oid": "6a33c9697162f3c39b41c2fb"
+  },
+  "collections": [
+    {
+      "name": "users",
+      "fields": [
+        {
+          "name": "_id",
+          "type": "ObjectId",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "role_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "fields": [
+        {
+          "name": "_id",
+          "type": "ObjectId",
+          "required": true
+        },
+        {
+          "name": "product_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "stock",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "fields": [
+        {
+          "name": "_id",
+          "type": "ObjectId",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "product_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "total_amount",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "roles",
+      "fields": [
+        {
+          "name": "_id",
+          "type": "ObjectId",
+          "required": true
+        },
+        {
+          "name": "role_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "role_name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "permissions",
+          "type": "array",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# ─── Environment / Credentials ─────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+api_doc_simulator/.env
+backend/.env
+frontend/**/.env
+
+# ─── Python ─────────────────────────────────────────────────────────────
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# ─── Node.js ────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── React build output ────────────────────────────────────────────────
+frontend/**/build/
+frontend/**/dist/
+
+# ─── OS / Editor junk ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ─── Logs ───────────────────────────────────────────────────────────────
+*.log
+logs/
