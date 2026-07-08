@@ -202,17 +202,23 @@ async function rebuildFullSpec() {
         }
     }
 
-    latestOpenApiSpec = JSON.stringify({
+    const baseSpec = {
         openapi: "3.0.0",
         info:    { title: "API Documentation (Dynamic)", version: "1.0.0" },
         servers: [{ url: "http://localhost:3001/api" }],
         components,
         paths
-    })
+    }
+
+    const { mergeCustomFunctionPaths } = require('./customFunctionSpecMerge')
+    const finalSpec = await mergeCustomFunctionPaths(baseSpec)
+
+    latestOpenApiSpec = JSON.stringify(finalSpec)
 
     console.log('Full spec rebuilt and ready')
     broadcastUpdate()
 }
+global.rebuildFullSpec = rebuildFullSpec;
 
 // ─── Process pending flags ────────────────────────────────────────────────────
 async function processPendingFlags() {
@@ -595,6 +601,9 @@ async function handleDynamicRoute(req, res) {
 }
 
 app.use('/api/admin', require('./adminRoutes'))
+app.use('/api/branding', require('./brandingRoutes'))
+app.use('/api/custom-functions', require('./customFunctionRoutes'))
+app.use('/api/custom', require('./customFunctionExecutionRoutes'))
 
 app.all('/api/:collectionName',     operationBlockMiddleware, handleDynamicRoute)
 app.all('/api/:collectionName/:id', operationBlockMiddleware, handleDynamicRoute)

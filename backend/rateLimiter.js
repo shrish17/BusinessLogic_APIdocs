@@ -178,6 +178,15 @@ async function rateLimiter(req, res, next) {
         // this IP first — that's fine, just continue.
         return next();
       } else {
+        // If the request is for a dynamic API CRUD route, do not send 429.
+        // Let it pass through to operationBlockMiddleware.
+        const parts = req.path.split('/').filter(Boolean);
+        const isDynamicCrud = parts[0] === 'api' && parts[1] && parts[1] !== 'admin' && parts[1] !== 'openapi';
+        
+        if (isDynamicCrud) {
+          return next();
+        }
+
         return sendBlockedResponse(res, ip, config, ipDoc.blockedAt, ipDoc.blockExpiry);
       }
     }
@@ -276,5 +285,6 @@ async function seedRateLimitConfig(db) {
 
 module.exports = {
   rateLimiter,
-  seedRateLimitConfig
+  seedRateLimitConfig,
+  normalizeIp
 };

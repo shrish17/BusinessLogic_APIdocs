@@ -89,7 +89,7 @@ export default function AdminDashboard() {
                     delete: config.blockedOperations.includes('delete')
                 });
             } else {
-                setOperations({ create: true, read: true, update: true, delete: true });
+                setOperations({ create: false, read: false, update: false, delete: false });
             }
         } catch (err) {
             setOpError(`Could not load operations for ${colName}: ${err.message}`);
@@ -473,7 +473,7 @@ export default function AdminDashboard() {
                             Operation Blocking by Table
                         </h2>
                         <p style={{ color: '#8b949e', fontSize: '14px', marginBottom: '30px' }}>
-                            Configure which CRUD operations are denied when a client IP is blocked.
+                            These settings only apply to IPs that are currently blocked — they define which operations stay restricted during a block, and clear automatically once the IP is unblocked.
                         </p>
 
                         <div style={{

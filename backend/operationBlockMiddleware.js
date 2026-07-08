@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { normalizeIp } = require('./rateLimiter');
 
 let operationsCache = null;
 let lastCacheTime = 0;
@@ -62,10 +63,23 @@ async function operationBlockMiddleware(req, res, next) {
             return next();
         }
 
+        // 1. Check if the requesting IP is actually blocked in rate_limit_state
+        const rawIp = req.headers['x-forwarded-for'] || req.ip || req.socket.remoteAddress;
+        const ip = normalizeIp(rawIp);
+        const ipDoc = await db.collection('rate_limit_state').findOne({ ip });
+
+        const isBlocked = ipDoc && ipDoc.blocked && (!ipDoc.blockExpiry || new Date(ipDoc.blockExpiry).getTime() > Date.now());
+
+        if (!isBlocked) {
+            // IP is not blocked — allow the request immediately
+            return next();
+        }
+
+        // 2. IP is blocked — enforce the collection's blockedOperations policy
         await refreshCache(db);
 
-        const blockedOps = operationsCache.get(collectionName);
-        if (blockedOps && blockedOps.includes(op)) {
+        const blockedOps = operationsCache.get(collectionName) || [];
+        if (blockedOps.includes(op)) {
             return res.status(403).json({
                 error: "This operation is currently disabled for this collection by admin configuration."
             });
